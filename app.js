@@ -1,0 +1,30 @@
+const TelegramBot = require('node-telegram-bot-api');
+
+// Replace YOUR_BOT_TOKEN with the token you received from the BotFather
+const token = '7332835734:AAHB8ihpf2YZLru9Q4jjhEicwoFcz2w6fZE';
+const bot = new TelegramBot(token, { polling: true });
+
+// Matches "/start"
+bot.onText(/\/start/, (msg) => {
+  const chatId = msg.chat.id;
+  const name = msg.from.first_name || 'User';
+
+  bot.sendMessage(chatId, `Hello, ${name}! Welcome to GFXvs, where creators clash for daily cash prizes. Cast your vote to secure participation NFTs and a chance to win an exclusive 1:1 masterpiece. Connect your NEAR wallet to join the thrilling competition!. \nPlease click 👇 the Play button to participate in the battle.`);
+});
+
+// Matches "/help"
+bot.onText(/\/help/, (msg) => {
+  const chatId = msg.chat.id;
+  
+  bot.sendMessage(chatId, 'Here are the available commands:\n/start - Start the bot\n/help - Get help');
+});
+
+// Fallback for unknown commands
+bot.on('message', (msg) => {
+  const chatId = msg.chat.id;
+  const text = msg.text;
+
+  if (text.startsWith('/')) {
+    bot.sendMessage(chatId, 'Unknown command. Use /help to see the list of available commands.');
+  }
+});
