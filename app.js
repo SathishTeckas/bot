@@ -24,7 +24,7 @@ bot.on('message', (msg) => {
   const chatId = msg.chat.id;
   const text = msg.text;
 
-  if (text.startsWith('/')) {
-    bot.sendMessage(chatId, 'Unknown command. Use /help to see the list of available commands.');
-  }
+  // if (text.startsWith('/')) {
+  //   bot.sendMessage(chatId, 'Unknown command. Use /help to see the list of available commands.');
+  // }
 });
