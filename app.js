@@ -1,10 +1,10 @@
 const TelegramBot = require('node-telegram-bot-api');
+const express = require('express');
+const http = require('http');
 
-// Replace YOUR_BOT_TOKEN with the token you received from the BotFather
 const token = '7332835734:AAHB8ihpf2YZLru9Q4jjhEicwoFcz2w6fZE';
 const bot = new TelegramBot(token, { polling: true });
 
-// Matches "/start"
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
   const name = msg.from.first_name || 'User';
@@ -28,3 +28,22 @@ bot.on('message', (msg) => {
   //   bot.sendMessage(chatId, 'Unknown command. Use /help to see the list of available commands.');
   // }
 });
+
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send('Telegram bot is running!');
+});
+
+const server = http.createServer(app);
+const PORT = process.env.PORT || 3000;
+
+server.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+
+bot.on('polling_error', (error) => {
+  console.log(`Polling error: ${error.message}`);
+});
+
+console.log('Telegram bot started!');
