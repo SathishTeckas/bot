@@ -6,7 +6,7 @@ const bot = new TelegramBot(token, { polling: true });
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
   const name = msg.from.first_name || 'User';
-  bot.sendMessage(chatId, `Hello, ${name}! Welcome to GFXvs, where creators clash for daily cash prizes. Cast your vote to secure participation NFTs and a chance to win an exclusive 1:1 masterpiece. Connect your NEAR wallet to join the thrilling competition!. \nPlease click :point_down: the Play button to participate in the battle.`);
+  bot.sendMessage(chatId, `Hello, ${name}! Welcome to GFXvs, where creators clash for daily cash prizes. Cast your vote to secure participation NFTs and a chance to win an exclusive 1:1 masterpiece. Connect your NEAR wallet to join the thrilling competition!. \nPlease click 👇 the Play button to participate in the battle.`);
 });
 // Matches "/help"
 bot.onText(/\/help/, (msg) => {
